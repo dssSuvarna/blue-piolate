@@ -1,0 +1,194 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:14
+    restart: always
+    container_name: postgres
+    environment:
+      POSTGRES_USER: $POSTGRESQL_USER
+      POSTGRES_PASSWORD: $POSTGRESQL_PASSWORD
+      POSTGRES_DB: blue_pilot
+    networks:
+      - pilot
+    ports:
+      - "5432:5432"
+    volumes:
+      - /home/data:/var/lib/postgresql
+  localstack:
+    restart: always
+    container_name: localstack
+    image: localstack/localstack
+    networks:
+      - pilot
+    ports:
+      - "4566:4566"
+      - "4571:4571"
+    environment:
+      SERVICES: s3,sqs
+      DEFAULT_REGION: us-east-1
+    volumes:
+      - /home/localstack:/tmp/localstack
+  sonarqube:
+    restart: always
+    image: sonarqube:latest
+    container_name: sonarqube
+    networks:
+      - pilot
+    ports:
+      - "9000:9000"
+  eureka-server-registry:
+    image: "${DOCKER_HUB_USERNAME}/eureka-server-registry-${ENV}:latest"
+    restart: always
+    container_name: eureka-server-registry
+    networks:
+      - pilot
+    ports:
+      - "8761:8761"
+  blue-pilot-gateway:
+    image: "${DOCKER_HUB_USERNAME}/blue-pilot-gateway-${ENV}:latest"
+    restart: always
+    container_name: blue-pilot-gateway
+    networks:
+      - pilot
+    ports:
+      - "8080:8080"
+    depends_on:
+      - eureka-server-registry
+    environment:
+      EUREKA_CLIENT_URL: ${EUREKA_CLIENT_URL}
+  core-service:
+    image: "${DOCKER_HUB_USERNAME}/core-service-${ENV}:latest"
+    restart: always
+    container_name: core-service
+    depends_on:
+      - postgres
+    environment:
+      POSTGRESQL_HOST: postgres
+      POSTGRESQL_PORT: ${POSTGRESQL_PORT}
+      POSTGRESQL_USER: ${POSTGRESQL_USER}
+      POSTGRESQL_PASSWORD: ${POSTGRESQL_PASSWORD}
+      MAX_FILE_SIZE: ${MAX_FILE_SIZE}
+      S3_PROFILE: ${S3_PROFILE}
+      S3_REGION: ${S3_REGION}
+      S3_BUCKETNAME: ${S3_BUCKETNAME}
+      S3_KEY: ${S3_KEY}
+      S3_ENDPOINT: ${S3_ENDPOINT}
+      SQS_PROFILE: ${SQS_PROFILE}
+      SQS_REGION: ${SQS_REGION}
+      SQS_ENDPOINT: ${SQS_ENDPOINT}
+      SQS_QUEUE_URL: ${SQS_QUEUE_URL}
+      INVITE_CODE_PREFIX: ${INVITE_CODE_PREFIX}
+      EMPLOYEE_CODE_PREFIX: ${EMPLOYEE_CODE_PREFIX}
+      EMPLOYEE_CODE_BUFFER: ${EMPLOYEE_CODE_BUFFER}
+      DEFAULT_USER_PASSWORD: ${DEFAULT_USER_PASSWORD}
+      ANNUAL_LEAVES: ${ANNUAL_LEAVES}
+      SICK_LEAVES: ${SICK_LEAVES}
+      PRIVILEGE_LEAVES: ${PRIVILEGE_LEAVES}
+      EUREKA_CLIENT_URL: ${EUREKA_CLIENT_URL}
+      HR_GMAIL: ${HR_GMAIL}
+    networks:
+      - pilot
+    volumes:
+      - ~/.aws/credentials:/root/.aws/credentials
+      - ~/.aws/config:/root/.aws/config
+    ports:
+      - "9008:9008"
+
+  auth-service:
+    image: "${DOCKER_HUB_USERNAME}/auth-service-${ENV}:latest"
+    restart: always
+    container_name: auth-service
+    depends_on:
+      - postgres
+      - core-service
+    environment:
+      POSTGRESQL_HOST: postgres
+      POSTGRESQL_PORT: ${POSTGRESQL_PORT}
+      POSTGRESQL_USER: ${POSTGRESQL_USER}
+      POSTGRESQL_PASSWORD: ${POSTGRESQL_PASSWORD}
+      MAX_FILE_SIZE: ${MAX_FILE_SIZE}
+      SECRET_KEY: ${SECRET_KEY}
+      EUREKA_CLIENT_URL: ${EUREKA_CLIENT_URL}
+    ports:
+      - "9002:9002"
+    networks:
+      - pilot
+  user-service:
+    image: "${DOCKER_HUB_USERNAME}/user-service-${ENV}:latest"
+    restart: always
+    container_name: user-service
+    depends_on:
+      - postgres
+      - core-service
+    environment:
+      POSTGRESQL_HOST: postgres
+      POSTGRESQL_PORT: ${POSTGRESQL_PORT}
+      POSTGRESQL_USER: ${POSTGRESQL_USER}
+      POSTGRESQL_PASSWORD: ${POSTGRESQL_PASSWORD}
+      MAX_FILE_SIZE: ${MAX_FILE_SIZE}
+      SQS_PROFILE: ${SQS_PROFILE}
+      SQS_REGION: ${SQS_REGION}
+      SQS_ENDPOINT: ${SQS_ENDPOINT}
+      SQS_QUEUE_URL: ${SQS_QUEUE_URL}
+      ESI_FILE_NAME: ${ESI_FILE_NAME}
+      ESI_SHEET_NAME: ${ESI_SHEET_NAME}
+      CMS_CLIENT_CODE: ${CMS_CLIENT_CODE}
+      CMS_PRODUCT_CODE: ${CMS_PRODUCT_CODE}
+      CMS_PAYMENT_TYPE: ${CMS_PAYMENT_TYPE}
+      CMS_DEBIT_ACCOUNT_NUMBER: ${CMS_DEBIT_ACCOUNT_NUMBER}
+      CMS_BANK_CODE: ${CMS_BANK_CODE}
+      CMS_DEBIT_NARRATION: ${CMS_DEBIT_NARRATION}
+      CMS_CREDIT_NARRATION: ${CMS_CREDIT_NARRATION}
+      EUREKA_CLIENT_URL: ${EUREKA_CLIENT_URL}
+    ports:
+      - "9003:9003"
+    networks:
+      - pilot
+    volumes:
+      - ~/.aws/credentials:/root/.aws/credentials
+      - ~/.aws/config:/root/.aws/config
+  notification-service:
+    image: "${DOCKER_HUB_USERNAME}/notification-service-${ENV}:latest"
+    restart: always
+    container_name: notification-service
+    depends_on:
+      - postgres
+      - core-service
+    environment:
+      POSTGRESQL_HOST: postgres
+      POSTGRESQL_PORT: ${POSTGRESQL_PORT}
+      POSTGRESQL_USER: ${POSTGRESQL_USER}
+      POSTGRESQL_PASSWORD: ${POSTGRESQL_PASSWORD}
+      MAX_FILE_SIZE: ${MAX_FILE_SIZE}
+      SQS_PROFILE: ${SQS_PROFILE}
+      SQS_REGION: ${SQS_REGION}
+      SQS_ENDPOINT: ${SQS_ENDPOINT}
+      SQS_QUEUE_URL: ${SQS_QUEUE_URL}
+      MAIL_HOST: ${MAIL_HOST}
+      MAIL_PORT: ${MAIL_PORT}
+      MAIL_USERNAME: ${MAIL_USERNAME}
+      MAIL_PASSWORD: ${MAIL_PASSWORD}
+      EUREKA_CLIENT_URL: ${EUREKA_CLIENT_URL}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION}
+      COMPANY_NAME: ${COMPANY_NAME}
+      COMPANY_LINK: ${COMPANY_LINK}
+      COMPANY_LOGO: ${COMPANY_LOGO}
+      LINKEDIN_LINK: ${LINKEDIN_LINK}
+      LINKEDIN_LOGO: ${LINKEDIN_LOGO}
+      INSTAGRAM_LINK: ${INSTAGRAM_LINK}
+      INSTAGRAM_LOGO: ${INSTAGRAM_LOGO}
+      COMPANY_ADDRESS: ${COMPANY_ADDRESS}
+      COMPANY_EMAIL: ${COMPANY_EMAIL}
+    ports:
+      - "9012:9012"
+    volumes:
+      - ~/.aws/credentials:/root/.aws/credentials
+      - ~/.aws/config:/root/.aws/config
+    networks:
+      - pilot
+
+networks:
+  pilot:
+    driver: bridge

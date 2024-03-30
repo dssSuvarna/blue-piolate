@@ -1,0 +1,49 @@
+.applied-header {
+    display: flex;
+    align-items: center;
+    border: 10px solid #0e59fb;
+    border-radius: 5px;
+    width: 90% !important;
+}
+
+.applied-rejected-header {
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    width: 90% !important;
+    background: linear-gradient(90deg,rgb(95, 38, 74) 0%, rgb(149, 119, 119) 35%, rgb(176, 164, 164) 100%);
+}
+
+.inner-approved-header {
+    margin-top: 20px;
+    color: green;
+    text-align: center;
+    font-weight: bold;
+}
+
+.rejected-image{
+    margin-top: 10px;
+    height: 50%;
+    width: 50%;
+}
+
+.inner-rejected-header {
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+.leave-applied-message-head {
+    font-size: 1rem;
+    display: flex;
+    margin-left: 20px;
+}
+
+
+.rejected{
+    background: linear-gradient(90deg,rgb(176, 164, 164) 0%, rgb(149, 119, 119) 35%, rgb(95, 38, 74) 100%);
+}
+
+.rejected-image{
+    margin-top: 20px;
+}

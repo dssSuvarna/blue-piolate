@@ -1,0 +1,47 @@
+server:
+  servlet:
+    context-path: /auth
+  port: ${PORT:9002}
+
+spring:
+  application:
+    name: AUTH-SERVICE
+  datasource:
+    url: jdbc:postgresql://${POSTGRESQL_HOST:localhost}:${POSTGRESQL_PORT:5432}/blue_pilot
+    username: ${POSTGRESQL_USER:root}
+    password: ${POSTGRESQL_PASSWORD:pilot}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  servlet:
+    multipart:
+      max-file-size: ${MAX_FILE_SIZE:5MB}
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone : ${EUREKA_CLIENT_URL:http://localhost:8761/eureka/}
+
+
+auth:
+  secret_key: ${SECRET_KEY:5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437}
+
+api-config:
+  openApis:
+    - /auth/login
+    - /auth/generate-otp
+    - /auth/verify-otp
+aws:
+  sqs:
+    profile: ${SQS_PROFILE:default}
+    region: ${SQS_REGION:us-east-1}
+    endpoint: ${SQS_ENDPOINT:http://localstack:4566}
+    queue-url: ${SQS_QUEUE_URL:http://localstack:4566/000000000000/notification-queue}

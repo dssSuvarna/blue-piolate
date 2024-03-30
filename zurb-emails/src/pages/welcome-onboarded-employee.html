@@ -1,0 +1,26 @@
+<container>
+    <row>
+        <columns>
+            <img src="https://blue-pilot-staging.s3.ap-south-1.amazonaws.com/logos/welcom.png" class="onboarded-header" alt="welcome">
+        </columns>
+    </row>
+    <row>
+        <columns>
+            <div class="content">
+                <p>Dear ${employeeName}, <br>We are thrilled to welcome you to the ${companyName} family! As you embark
+                    on this exciting
+                    new journey, we want to express our enthusiasm and support for your role as ${employeePosition}.
+                    Your skills and experiences have impressed us, and we're confident that you'll make valuable
+                    contributions to our team.</p>
+                <spacer size="16"></spacer>
+                <span><STRONG>Onboarding Details</STRONG> </span>
+                <ul>
+                    <li>Joining Date: ${joiningDate}</li>
+                    <li>Reporter: ${reporterName}</li>
+                </ul>
+                <spacer size="16"></spacer>
+                {{> footer}}
+            </div>
+        </columns>
+    </row>
+</container>

@@ -1,0 +1,63 @@
+server:
+  servlet:
+    context-path: /core-service
+  port : ${PORT:9008}
+
+spring:
+  application:
+    name: CORE-SERVICE
+  datasource:
+    url: jdbc:postgresql://${POSTGRESQL_HOST:localhost}:${POSTGRESQL_PORT:5432}/blue_pilot
+    username: ${POSTGRESQL_USER:root}
+    password: ${POSTGRESQL_PASSWORD:pilot}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    flyway:
+      baseline-on-migrate: false
+  servlet:
+    multipart:
+      max-file-size: ${MAX_FILE_SIZE:5MB}
+eureka:
+  client:
+    service-url:
+      defaultZone : ${EUREKA_CLIENT_URL:http://localhost:8761/eureka/}
+
+aws:
+  s3:
+    profile: ${S3_PROFILE:default}
+    region: ${S3_REGION:us-east-1}
+    bucketname: ${S3_BUCKETNAME:blue-pilot}
+    key: ${S3_KEY:acc/}
+    endpoint: ${S3_ENDPOINT:http://localstack:4566}
+  sqs:
+    profile: ${SQS_PROFILE:default}
+    region: ${SQS_REGION:us-east-1}
+    endpoint: ${SQS_ENDPOINT:http://localstack:4566}
+    queue-url: ${SQS_QUEUE_URL:http://localstack:4566/000000000000/notification-queue}
+
+config:
+   invite-code-prefix: ${INVITE_CODE_PREFIX:VINNO-}
+   employee-code-prefix: ${EMPLOYEE_CODE_PREFIX:VIN}
+   employee-code-buffer: ${EMPLOYEE_CODE_BUFFER:0}
+   default-user-password: ${DEFAULT_USER_PASSWORD:Tibca@123}
+   annual-leaves: ${ANNUAL_LEAVES:20.0}
+   sick-leaves: ${SICK_LEAVES:8.0}
+   privilege-leaves: ${PRIVILEGE_LEAVES:12.0}
+   hr-gmail: ${HR_GMAIL:bluepilot.vinno@gmail.com}
+
+api-config:
+  openApis:
+    - /core-service/employee/user-context/validate-code
+    - /core-service/employee/user-context/update
+    - /core-service/employee/user-context/view
+    - /core-service/admin/user-context/view
+    - /core-service/employee/document/upload
+    - /core-service/employee/document/presigned-url

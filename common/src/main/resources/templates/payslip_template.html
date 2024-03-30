@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <style>
+            .bdy {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            table {
+                font-family: "Calibri", sans-serif;
+                font-size: 15px;
+                text-align: left;
+                padding-left: 50px;
+                width: 100%;
+                border-collapse: collapse;
+                border: 1px solid black;
+            }
+
+            .tble-div {
+                gap: 5px;
+                padding: 10px 10px;
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            table td {
+                line-height: 25px;
+                border: none;
+                border-collapse: collapse;
+            }
+
+            table th {
+                padding-right: 10px;
+                border: none;
+                color: #000000;
+            }
+
+            .net-sal {
+                font-family: "Calibri", sans-serif;
+                width: 100%;
+                display: flex;
+                flex: 50%;
+                justify-content: space-around;
+                justify-items: flex-end;
+            }
+        </style>
+
+    </head>
+
+    <body class="bdy">
+    <div style="padding: 10px; text-align: center; width: 25rem;">
+        <img src="static/Vinnovate.png" alt="Image" />
+        <p>#494, 2nd
+        Floor, E End Main
+        Rd, above Sanjee Diagnostics and Healthcare,
+        Jayanagara 9th Block, Bengaluru, 560069, India</p>
+        <p style="padding-top: 50px"><strong>PAYSLIP FOR THE MONTH OF <span th:text="${monthYear}"></span></strong></p>
+    </div>
+    <div class="tble-div">
+        <table border="1">
+            <tr style="background-color:#ffffff;color:#ffffff;font-size:24px; font-weight:600;">
+                <td colspan='4'>
+                </td>
+            </tr>
+            <tr>
+                <td>Emp NO :</td>
+                <td> <span th:text="${employeeNo}"></span></td>
+                <td>Days :</td>
+                <td> <span th:text="${Days}"></span></td>
+            </tr>
+            <tr>
+                <td>Name :</td>
+                <td> <span th:text="${employeeName}"></span></td>
+                <td>Days Payable :</td>
+                <td> <span th:text="${daysPayable}"></span></td>
+            </tr>
+            <tr>
+                <td>Designation :</td>
+                <td> <span th:text="${designation}"></span></td>
+            </tr>
+            <tr>
+                <td>Pan :</td>
+                <td> <span th:text="${panNo}"></span></td>
+            </tr>
+            <tr>
+                <td>DOJ :</td>
+                <td><span th:text="${dateOfJoining}"></span></td>
+            </tr>
+        </table>
+        <tr></tr>
+        <br />
+        <table border="1">
+            <tr>
+                <th>Earnings</th>
+                <th>YTD-Prv Mth</th>
+                <th>Amount</th>
+                <th>YTD</th>
+                <th>Deductions</th>
+                <th>YTD-Prv Mth</th>
+                <th>Amount</th>
+                <th>YTD</th>
+            </tr>
+            <tr>
+                <td>Salary</td>
+                <td><span th:text="${dateOfJoining}"></span></td>
+                <td><span th:text="${salaryYtdPrevMth}"></span></td>
+                <td><span th:text="${salaryAamount}"></span></td>
+                <td>Profession tax</td>
+                <td><span th:text="${professionTaxYtdPrevMth}"></span></td>
+                <td><span th:text="${professionTaxAmount}"></span></td>
+                <td><span th:text="${professionTaxYtd}"></span></td>
+            </tr>
+            <tr>
+                <td>HRA</td>
+                <td><span th:text="${hraYtdPrevMth}"></span></td>
+                <td><span th:text="${hraAmount}"></span></td>
+                <td><span th:text="${hraYtd}"></span></td>
+                <td>Provident Fund</td>
+                <td><span th:text="${providentFundYtdPrevMth}"></span></td>
+                <td><span th:text="${providentFundAmount}"></span></td>
+                <td><span th:text="${providentFundYtd}"></span></td>
+            </tr>
+            <tr>
+                <td>Special Allowance</td>
+                <td><span th:text="${spAllowanceYtdPrevMth}"></span></td>
+                <td><span th:text="${spAllowanceAmount}"></span></td>
+                <td><span th:text="${spAllowanceYtd}"></span></td>
+                <td>ESI</td>
+                <td><span th:text="${esiYtdPrevMth}"></span></td>
+                <td><span th:text="${esiAmount}"></span></td>
+                <td><span th:text="${esiYtd}"></span></td>
+            </tr>
+            <tr>
+                <td>Bonus</td>
+                <td><span th:text="${bonusYtdPrevMth}"></span></td>
+                <td><span th:text="${bonusAmount}"></span></td>
+                <td><span th:text="${bonusYtd}"></span></td>
+                <td>TDS - Income Tax</td>
+                <td><span th:text="${incomeTaxYtdPrevMth}"></span></td>
+                <td><span th:text="${incomeTaxAmount}"></span></td>
+                <td><span th:text="${incomeTaxYtd}"></span></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Other deductions</td>
+                <td><span th:text="${otherDeductionsYtdPrevMth}"></span></td>
+                <td><span th:text="${otherDeductionsAmount}"></span></td>
+                <td><span th:text="${otherDeductionsYtd}"></span></td>
+            </tr>
+            <tr>
+                <th>Gross</th>
+                <td><span th:text="${grossYtdPrevMth}"></span></td>
+                <td><span th:text="${grossAmount}"></span></td>
+                <td><span th:text="${grossYtd}"></span></td>
+                <th>Deductions</th>
+                <td><span th:text="${deductionsYtdPrevMth}"></span></td>
+                <td><span th:text="${deductionsAmount}"></span></td>
+                <td><span th:text="${deductionsYtd}"></span></td>
+            </tr>
+        </table>
+        <div class="net-sal">
+            <p style="justify-content: space-around; width: 100%; align-self: center;"><strong>Net salary payable for month of
+                <span>07-2023</span></strong></p>
+            <p style="background-color: rgb(236, 193, 136); margin-right: 9.5%; padding: 1%;"><span th:text="${netSalary}"></span></p>
+        </div>
+    </div>
+    </body>
+
+</html>

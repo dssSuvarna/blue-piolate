@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto17
+  pre_build:
+    commands:
+      - chmod +x gradlew   # Ensure gradlew has executable permissions
+      - ./gradlew clean build -x test   # Run gradle wrapper to clean and build the project
+  build:
+    commands:
+      - echo Build started `date`
+      - echo Building and Pushing the Docker image...
+      - ./docker-build.sh
+  post_build:
+    commands:
+      - echo Build completed on `date`
+artifacts:
+  files:
+    - '**/*'
+  name: blue-pilot-$ENV

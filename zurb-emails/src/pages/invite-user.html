@@ -1,0 +1,30 @@
+<container class="container-div">
+    <row class="container-div">
+        <row class="main-div">
+            <columns class="wlcm-div make-content-center" large="12">
+                <p class="logo-div">
+                    <img class="logo-img" src="https://blue-pilot-staging.s3.ap-south-1.amazonaws.com/logos/invitemain.png"
+                         alt="logo icon">
+                </p>
+                <p class="wlcm-div-hdng">${employeeName}, WELCOME TO THE ${companyName}</p>
+                <p class="wlcm-div-text">To ensure a seamless onboarding process, we kindly ask you to provide us with
+                    some
+                    basic information. </p>
+            </columns>
+        </row>
+        <row class="main-div">
+            <columns class="complete-yur-profile-div make-content-center">
+                <img class="logo-img" src=${companyLogo} alt="logo icon">
+            </columns>
+            <columns class="complete-yur-profile-div make-content-center" large="12">
+                <p class="complete-text">Complete Your Onboarding Process</p>
+            </columns>
+        </row>
+        <row class="main-div">
+            <columns class="complete-yur-profile-div make-content-center" large="6">
+                <a href=${inviteLink} target="_blank" class="button-71">Complete Your Profile</a>
+            </columns>
+        </row>
+        {{> footer}}
+    </row>
+</container>

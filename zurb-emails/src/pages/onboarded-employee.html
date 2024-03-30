@@ -1,0 +1,31 @@
+<container class="container">
+    <row>
+        <columns>
+            <img src="https://blue-pilot-staging.s3.ap-south-1.amazonaws.com/logos/onboarded.png"
+                 class="onboarded-header" alt="onboarded">
+        </columns>
+    </row>
+    <row>
+        <columns>
+            <div class="content">
+                <p>Dear ${receiptName},</p>
+                <p style="text-align: left">We're delighted to welcome a new member to the ${companyName} family. Please
+                    find the details of the
+                    newly
+                    onboarded employee below:</p>
+                <ul>
+                    <li><strong>Name:</strong> ${employeeName}</li>
+                    <li><strong>Reporter:</strong> ${reporterName}</li>
+                    <li><strong>Position:</strong> ${employeePosition}</li>
+                    <li><strong>Joining Date:</strong> ${joiningDate}</li>
+                    <li><strong>Email:</strong> ${employeeEmail}</li>
+                    <li><strong>Phone:</strong> ${employeePhone}</li>
+                </ul>
+                <p>Kindly ensure that the new employee's onboarding process is smooth and efficient. Coordinate with the
+                    relevant departments to provide the necessary resources and information.</p>
+                <spacer size="16"></spacer>
+                {{> footer}}
+            </div>
+        </columns>
+    </row>
+</container>

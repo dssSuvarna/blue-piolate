@@ -1,0 +1,51 @@
+.notify-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.notify-header {
+    display: flex;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    background-color: #0ebafb;
+    color: #ffffff;
+    padding: 10px 20px;
+    align-items: baseline;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.notify-top-head > h1 {
+    margin: 0;
+    font-size: 26px;
+}
+
+.notify-top-head > h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+
+.notify-message {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.notify-button-container {
+    text-align: center;
+}
+
+.notify-button {
+    display: inline-block;
+    background-color: #027bf7;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}

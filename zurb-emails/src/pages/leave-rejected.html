@@ -1,0 +1,45 @@
+<container class="leave-applied-container">
+    <spacer size="16"></spacer>
+    <row>
+        <container class="applied-rejected-header">
+            <row class="rejected">
+                <columns>
+                    <center>
+                        <img src="https://blue-pilot-staging.s3.ap-south-1.amazonaws.com/logos/calender.gif" alt="">
+                    </center>
+                </columns>
+                <columns class="mrgn">
+                    <center>
+                        <img src=https://blue-pilot-staging.s3.ap-south-1.amazonaws.com/logos/rejected.png alt=""
+                             class="rejected-image">
+                        <h2 class="inner-rejected-header"> Leave Rejected</h2>
+                    </center>
+                </columns>
+            </row>
+        </container>
+        <spacer size="16"></spacer>
+
+        <p class="bold-header">Leave Summary</p>
+        <row>
+            <row class="leave-applied-date-cont">
+                <columns class="small-6">
+                    <p class="leave-applied-box">From Date: ${fromDate}</p>
+                </columns>
+                <columns>
+                    <p class="leave-applied-box">To Date: ${toDate}</p>
+                </columns>
+            </row>
+            <row class="leave-applied-date-cont">
+                <p style="text-align: left; margin-left: 30px">Your leave has been rejected by</p>
+                <ul>
+                    ${approvers}
+                </ul>
+            </row>
+            <center>
+                <a class="leave-applied-button" href=${companyLink}>Visit our Website</a>
+            </center>
+            <spacer size="16"></spacer>
+            {{> footer}}
+        </row>
+    </row>
+</container>

@@ -1,0 +1,28 @@
+.otp-logo {
+    border: 10px solid #038be3;
+    max-width: none;
+    height: 50%;
+    width: 95%;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.otp-box {
+    background-color: #0078d0;
+    border-radius: 56px;
+    color: #fff;
+    display: inline-block;
+    font-family: system-ui,-apple-system,system-ui,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    outline: 0;
+    padding: 16px 21px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+}
+.otp-header{
+    text-align: center;
+    color: #03ab8d;
+    font-weight: bold;
+}

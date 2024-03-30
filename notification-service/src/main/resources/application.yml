@@ -1,0 +1,62 @@
+server:
+  port: ${PORT:9005}
+
+spring:
+  mail:
+    host: ${MAIL_HOST:smtp.gmail.com}
+    port: ${MAIL_PORT:25}
+    username: ${MAIL_USERNAME:j60507560@gmail.com}
+    password: ${MAIL_PASSWORD:vucnjsmswhvxpsbp}
+    properties:
+      mail:
+        transport:
+          protocol: smtp
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  application:
+    name: NOTIFICATION-SERVICE
+  datasource:
+    url: jdbc:postgresql://${POSTGRESQL_HOST:localhost}:${POSTGRESQL_PORT:5432}/blue_pilot
+    username: ${POSTGRESQL_USER:root}
+    password: ${POSTGRESQL_PASSWORD:pilot}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  servlet:
+    multipart:
+      max-file-size: ${MAX_FILE_SIZE:5MB}
+
+  freemarker:
+    templateLoaderPath: classpath:/templates/
+aws:
+  sqs:
+    profile: ${SQS_PROFILE:default}
+    region: ${SQS_REGION:us-east-1}
+    endpoint: ${SQS_ENDPOINT:http://localstack:4566}
+    queue-url: ${SQS_QUEUE_URL:http://localstack:4566/000000000000/notification-queue}
+    poll-rate: 10
+
+config:
+  company-name: ${COMPANY_NAME:Vinnovatelabz}
+  company-link: ${COMPANY_LINK:http://vinnovatelabz.com/}
+  company-logo: ${COMPANY_LOGO:http://vinnovatelabz.com/images/vinnologo.png}
+  linkedin-link: ${LINKEDIN_LINK:https://in.linkedin.com/company/vinnovatelabz}
+  linkedin-logo: ${LINKEDIN_LOGO:https://cdn1.iconfinder.com/data/icons/social-media-rounded-corners/512/Rounded_Linkedin2_svg-512.png}
+  instagram-link: ${INSTAGRAM_LINK:https://www.instagram.com/vinnovatelabz/}
+  instagram-logo: ${INSTAGRAM_LOGO:https://cdn1.iconfinder.com/data/icons/social-media-rounded-corners/512/Rounded_Instagram_svg-512.png}
+  company-address: ${COMPANY_ADDRESS:494, 2nd Floor, E End Main Rd, above Dr Preeti's Diabetic Clinic, Jayanagara 9th Block, Bengaluru, Karnataka 560069}
+  company-email: ${COMPANY_EMAIL:hr@vinnovatelabz.com}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_URL:http://localhost:8761/eureka/}

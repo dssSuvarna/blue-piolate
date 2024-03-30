@@ -1,0 +1,2 @@
+ALTER TABLE salary.employee_salary
+ADD status VARCHAR(32) NOT NULL DEFAULT 'TO_BE_VERIFIED';

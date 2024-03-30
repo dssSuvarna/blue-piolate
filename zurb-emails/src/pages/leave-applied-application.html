@@ -1,0 +1,45 @@
+<container class="leave-applied-container">
+    <spacer size="16"></spacer>
+    <row>
+        <div class="leave-applied-header">
+            <div class="leave-applied-header-text">
+                <h1 class="header1">Leave Application</h1>
+                <div class="leave-applied-from-container">
+                    <h3 class="leave-applied-from-head"><strong>From</strong> ${name}</h3>
+                </div>
+            </div>
+            <div class="leave-applied-header-icon">
+                <img src="https://static.vecteezy.com/system/resources/previews/014/772/665/original/leave-application-system-line-icon-vector.jpg"
+                     alt="">
+            </div>
+        </div>
+        <spacer size="16"></spacer>
+        <row>
+            <h3 class="leave-applied-message-head">Employee has submitted a leave application. Kindly review and grant
+                approval. Below is a detailed summary of the leave request</h3>
+            <spacer size="16"></spacer>
+            <p class="bold-header">Leave Summary</p>
+            <row class="leave-applied-date-cont">
+                <columns class="small-6">
+                    <p class="leave-applied-box">From Date: ${fromDate}</p>
+                </columns>
+                <columns>
+                    <p class="leave-applied-box">To Date: ${toDate}</p>
+                </columns>
+            </row>
+            <row class="leave-applied-date-cont">
+                <columns class="small-6">
+                    <p class="leave-applied-box">Total Leaves: ${totalLeaves}</p>
+                </columns>
+                <columns>
+                    <p class="leave-applied-box">Leave Type: ${leaveType}</p>
+                </columns>
+            </row>
+            <center>
+                <a class="leave-applied-button" href=${companyLink}>Visit our Website</a>
+            </center>
+            <spacer size="16"></spacer>
+            {{> footer}}
+        </row>
+    </row>
+</container>

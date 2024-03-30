@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<head>
+    <style>
+        .bdy {
+            width: 100%;
+            position: absolute;
+            left: 25%;
+        }
+
+        .img-address {
+            padding: 10px;
+            text-align: center;
+            width: 50%;
+            position: relative;
+        }
+
+        .address {
+            width: 50%;
+            text-align: center;
+            margin-left: 25%;
+        }
+
+        table {
+            font-family: "Calibri", sans-serif;
+            font-size: 14px;
+            text-align: left;
+            width: 100%;
+            border: 2px solid black;
+        }
+
+        .tble-div {
+            padding: 10px 10px;
+            width: 50%;
+        }
+
+        table td {
+            line-height: 25px;
+            border: none;
+            border-collapse: collapse;
+            margin-left: 30%;
+        }
+
+        table th {
+            padding-right: 10px;
+            border: none;
+            color: #000000;
+        }
+
+        .net-sal {
+            font-family: "Calibri", sans-serif;
+            width: 100%;
+            margin-top: 16px;
+        }
+    </style>
+</head>
+<html>
+<body class="bdy">
+<div class="img-address">
+    <img src="/home/akshaymehta/Documents/project/blue-pilot/user-service/src/main/resources/templates/logo.png" alt="Image"/>
+    <p class="address">#494, 2nd Floor, E End Main Rd, above Sanjee Diagnostics and Healthcare,
+        Jayanagara 9th Block, Bengaluru, 560069, India</p>
+    <p style="padding-top: 50px"><strong>PAYSLIP FOR THE MONTH OF
+        <span th:text="${data.month} + ' ' + ${data.year}"></span></strong>
+    </p>
+</div>
+<div class="tble-div">
+    <table>
+        <tr style="background-color:#ffffff;color:#ffffff;font-size:24px; font-weight:600;">
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td>Emp NO :</td>
+            <td th:text="${data.employeeCode}"></td>
+            <td>Days :</td>
+            <td th:text="${data.totalWorkingDays}"></td>
+        </tr>
+        <tr>
+            <td>Name :</td>
+            <td th:text="${name}"></td>
+            <td>Days Payable :</td>
+            <td th:text="${data.totalPayableDays}"></td>
+        </tr>
+        <tr>
+            <td>Designation :</td>
+            <td th:text="${data.designation}"></td>
+        </tr>
+        <tr>
+            <td>Pan :</td>
+            <td th:text="${data.panNo}"></td>
+        </tr>
+        <tr>
+            <td>DOJ :</td>
+            <td th:text="${data.doj}"></td>
+        </tr>
+    </table>
+    <br/>
+    <table>
+        <tr>
+            <th>Earnings</th>
+            <th>YTD-Prv Mth</th>
+            <th>Amount</th>
+            <th>YTD</th>
+            <th>Deductions</th>
+            <th>YTD-Prv Mth</th>
+            <th>Amount</th>
+            <th>YTD</th>
+        </tr>
+        <tr>
+            <td>Salary</td>
+            <td th:text="${data.ytdPmBasic}"></td>
+            <td th:text="${data.basic}"></td>
+            <td th:text="${data.ytdBasic}"></td>
+            <td>Profession tax</td>
+            <td th:text="${data.ytdPmPt}"></td>
+            <td th:text="${data.pt}"></td>
+            <td th:text="${data.ytdPt}"></td>
+        </tr>
+        <tr>
+            <td>HRA</td>
+            <td th:text="${data.ytdPmHra}"></td>
+            <td th:text="${data.hra}"></td>
+            <td th:text="${data.ytdHra}"></td>
+            <td>Provident Fund</td>
+            <td th:text="${data.ytdPmPf}"></td>
+            <td th:text="${data.pf}"></td>
+            <td th:text="${data.ytdPf}"></td>
+        </tr>
+        <tr>
+            <td>Special Allowance</td>
+            <td th:text="${data.ytdPmSpecialAllowances}"></td>
+            <td th:text="${data.specialAllowances}"></td>
+            <td th:text="${data.SpecialAllowances}"></td>
+            <td>ESI</td>
+            <td th:text="${data.ytdPmEsi}"></td>
+            <td th:text="${data.esi}"></td>
+            <td th:text="${data.ytdEsi}"></td>
+        </tr>
+        <tr>
+            <td>Bonus</td>
+            <td th:text="${data.ytdPmBonus}"></td>
+            <td th:text="${bonus}"></td>
+            <td th:text="${data.ytdBonus}"></td>
+            <td>TDS - Income Tax</td>
+            <td th:text="${data.ytdPmIt}"></td>
+            <td th:text="${data.it}"></td>
+            <td th:text="${data.ytdIt}"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Other deductions</td>
+            <td th:text="${data.ytdPmOtherDeductions}"></td>
+            <td th:text="${data.advance}"></td>
+            <td th:text="${data.ytdOtherDeductions}"></td>
+        </tr>
+        <tr>
+            <th>Gross</th>
+            <td th:text="${data.ytdPmEarnings}"></td>
+            <td th:text="${data.grossEarning}"></td>
+            <td th:text="${data.ytdEarnings}"></td>
+            <th>Deductions</th>
+            <td th:text="${data.ytdPmDeductions}"></td>
+            <td th:text="${data.grossDeductions}"></td>
+            <td th:text="${data.ytdDeductions}"></td>
+        </tr>
+    </table>
+    <div class="net-sal">
+        <p style="margin: 0; float: left; margin-top: 1%;"><strong>Net salary payable for month
+            of
+            <span th:text="${data.month} + ' ' + ${data.year}"></span></strong></p>
+        <p style="background-color: rgb(236, 193, 136); padding: 1%; margin: 0; margin-left: 81%; width: 10%;">
+            <span style="width: 100%; text-align: center; display: block;" th:text="${data.grossPay}"></span>
+        </p>
+    </div>
+</div>
+</body>
+</html>

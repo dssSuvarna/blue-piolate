@@ -1,0 +1,12 @@
+version: 0.0
+os: linux
+files:
+  - source: /docker-compose.yml
+    destination: /docs/deploy
+hooks:
+  BeforeInstall:
+    - location: /cleanup.sh
+      runas: root
+  ApplicationStart:
+    - location: /deploy.sh
+      runas: root

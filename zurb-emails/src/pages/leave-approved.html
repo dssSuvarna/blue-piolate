@@ -1,0 +1,42 @@
+<container class="leave-applied-container">
+    <spacer size="16"></spacer>
+    <row>
+        <container class="applied-header">
+            <row>
+                <columns class="large-6">
+                    <img src="https://blue-pilot-staging.s3.ap-south-1.amazonaws.com/logos/calender.gif" alt="">
+                </columns>
+                <columns>
+                    <img src="https://blue-pilot-staging.s3.ap-south-1.amazonaws.com/logos/approved.gif"
+                         style="margin: auto !important" alt="">
+                    <h2 class="inner-approved-header"> Leave Approved</h2>
+                </columns>
+            </row>
+        </container>
+        <spacer size="16"></spacer>
+        <p class="bold-header">Leave Summary</p>
+        <row>
+            <row class="leave-applied-date-cont">
+                <columns class="small-6">
+                    <p class="leave-applied-box">From Date: ${fromDate}</p>
+                </columns>
+                <columns>
+                    <p class="leave-applied-box">To Date: ${toDate}</p>
+                </columns>
+            </row>
+            <row class="leave-applied-date-cont">
+                <columns class="small-6">
+                    <p class="leave-applied-box">Total Leaves: ${totalLeaves}</p>
+                </columns>
+                <columns>
+                    <p class="leave-applied-box">Leave Type: ${leaveType}</p>
+                </columns>
+            </row>
+            <center>
+                <a class="leave-applied-button" href=${companyLink}>Visit our Website</a>
+            </center>
+            <spacer size="16"></spacer>
+            {{> footer}}
+        </row>
+    </row>
+</container>

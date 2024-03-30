@@ -1,0 +1,55 @@
+package com.bluepilot.userservice.models.requests
+
+import com.bluepilot.enums.Gender
+import com.bluepilot.enums.MaritalStatus
+import com.bluepilot.enums.Nominee
+import com.bluepilot.enums.RelationWithEmp
+import java.sql.Date
+
+data class UpdateESIAndPFDetailsByUserRequest(
+    val userId: Long,
+    val adhaarName: String,
+    val gender: Gender,
+    val maritalStatus: MaritalStatus,
+    val empDob: Date,
+    val mobNo: Long,
+    val fatherOrHusbandName: String,
+    val relWithEmp: RelationWithEmp,
+    val adhaarNo: String,
+    val panNo: String,
+    val flatOrHouseNo: String,
+    val streetNo: String,
+    val landMark: String,
+    val state: String,
+    val dist: String,
+    val fatherName: String,
+    val adhaarCardOfFather: String,
+    val dobOfFather: Date,
+    val motherName: String,
+    val adhaarCardOfMother: String? = null,
+    val dobOfMother: Date,
+    var wifeName: String? = null,
+    var adhaarCardOfWife: String? = null,
+    var dobOfWife: Date? = null,
+    var childOne: String? = null,
+    var adhaarCardOfChildOne: String? = null,
+    var genderOfChildOne: Gender? = null,
+    var dobOfChildOne: Date? = null,
+    var childTwo: String? = null,
+    var adhaarCardOfChildTwo: String? = null,
+    var genderOfChildTwo: Gender? = null,
+    var dobOfChildTwo: Date? = null,
+    var childThree: String? = null,
+    var adhaarCardOfChildThree: String? = null,
+    var genderOfChildThree: Gender? = null,
+    var dobOfChildThree: Date? = null,
+    var childFour: String? = null,
+    var adhaarCardOfChildFour: String? = null,
+    var genderOfChildFour: Gender? = null,
+    var dobOfChildFour: Date? = null,
+    var childFive: String? = null,
+    var adhaarCardOfChildFive: String? = null,
+    var genderOfChildFive: Gender? = null,
+    var dobOfChildFive: Date? = null,
+    val nominee: Nominee,
+)

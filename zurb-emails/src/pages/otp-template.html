@@ -1,0 +1,26 @@
+<container class="container-div">
+    <row>
+        <row>
+            <columns>
+                <p>
+                    <img class="otp-logo"
+                         src="https://blue-pilot-staging.s3.ap-south-1.amazonaws.com/logos/otp-image.gif"
+                         alt="logo icon">
+                </p>
+            </columns>
+        </row>
+        <row>
+            <columns>
+                <h2 class="otp-header">Your One-Time Password (OTP)</h2>
+                <center>
+                    <p class="otp-box"><strong>${otp}</strong></p>
+                </center>
+                <p>Please proceed by entering this code on the verification page to successfully conclude the process
+                    for resetting password.<br>
+                    <br><strong>NOTE:</strong> It is important to note that this code is valid for a duration of
+                    <strong>10 minutes</strong>.</p>
+            </columns>
+        </row>
+        {{> footer}}
+    </row>
+</container>
